@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IT255-DZ06</title>
+    <meta charset="utf-8" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="glavni_div">
+        <div class="px-3">
+            <form>
+                <label for="brSobe">Unesite broj sobe:</label>
+                <input type="number" name="brSobe" min="1" max="100" #brojSobe><br>
+                <label for="sprat">Unesite sprat:</label>
+                <input type="number" name="sprat" min="1" max="6" #sprat><br>
+                <label for="brMesta">Unesite broj mesta ljudi u sobi:</label>
+                <input type="number" name="brMesta" min="1" max="5" #brMesta><br>
+                <label for="cena">Unesite cenu jedne noci sobe:</label>
+                <input type="number" name="cena" min="1000" max="100000" #cena><br><br>
+                <input type="submit" class="btn btn-dark" value="Submit" (click)="addInfo(brojSobe, sprat, brMesta, cena)">
+            </form>
+        </div>
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Br. Sobe</th>
+                    <th scope="col">Sprat</th>
+                    <th scope="col">Br. Mesta</th>
+                    <th scope="col">Cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let soba of sobe">
+                    <td> {{ soba.brojSobe }} </td>
+                    <td> {{ soba.sprat }} </td>
+                    <td> {{ soba.brMesta }} </td>
+                    <td> {{ soba.cena }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
