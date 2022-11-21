@@ -14,13 +14,13 @@
         <div class="px-3">
             <form>
                 <label for="brSobe">Unesite broj sobe:</label>
-                <input type="number" name="brSobe" min="1" max="100" #brojSobe><br>
+                <input type="number" class="number_input" name="brSobe" min="1" max="100" #brojSobe><br>
                 <label for="sprat">Unesite sprat:</label>
-                <input type="number" name="sprat" min="1" max="6" #sprat><br>
+                <input type="number" class="number_input" name="sprat" min="1" max="6" #sprat><br>
                 <label for="brMesta">Unesite broj mesta ljudi u sobi:</label>
-                <input type="number" name="brMesta" min="1" max="5" #brMesta><br>
+                <input type="number" class="number_input" name="brMesta" min="1" max="5" #brMesta><br>
                 <label for="cena">Unesite cenu jedne noci sobe:</label>
-                <input type="number" name="cena" min="1000" max="100000" #cena><br><br>
+                <input type="number" class="number_input" name="cena" min="1000" max="100000" #cena><br><br>
                 <input type="submit" class="btn btn-dark" value="Submit" (click)="addInfo(brojSobe, sprat, brMesta, cena)">
             </form>
         </div>

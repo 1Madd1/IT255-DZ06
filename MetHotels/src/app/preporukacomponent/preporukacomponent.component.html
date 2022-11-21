@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <a href="#" class="dropbtn" (mouseover)="onPreporuke()" (mouseout)="offPreporuke()">Preporuke
+        <i class="fa fa-caret-down"></i>
+    </a>
+    <div class="dropdown-content">
+        <ul>
+            <li *ngFor="let preporuka of preporuke">{{preporuka.naziv}}!</li>
+        </ul>
+    </div>
+</div>
