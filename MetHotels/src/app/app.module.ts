@@ -8,6 +8,7 @@ import { NavbarcomponentComponent } from './navbarcomponent/navbarcomponent.comp
 import { PonudacomponentComponent } from './ponudacomponent/ponudacomponent.component';
 import { PreporukacomponentComponent } from './preporukacomponent/preporukacomponent.component';
 import { ONamaComponentComponent } from './o-nama-component/o-nama-component.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,10 @@ import { ONamaComponentComponent } from './o-nama-component/o-nama-component.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

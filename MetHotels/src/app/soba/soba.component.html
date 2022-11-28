@@ -12,17 +12,70 @@
 <body>
     <div class="glavni_div">
         <div class="px-3">
-            <form>
+            <form [formGroup]="angForm" novalidate>
                 <label for="brSobe">Unesite broj sobe:</label>
-                <input type="number" class="number_input" name="brSobe" min="1" max="100" #brojSobe><br>
+                <input type="number" class="number_input" name="brSobe" min="1" max="100"
+                    formControlName="brojSobe"><br>
                 <label for="sprat">Unesite sprat:</label>
-                <input type="number" class="number_input" name="sprat" min="1" max="6" #sprat><br>
+                <input type="number" class="number_input" name="sprat" min="1" max="6" formControlName="sprat"><br>
                 <label for="brMesta">Unesite broj mesta ljudi u sobi:</label>
-                <input type="number" class="number_input" name="brMesta" min="1" max="5" #brMesta><br>
+                <input type="number" class="number_input" name="brMesta" min="1" max="5" formControlName="brMesta"><br>
                 <label for="cena">Unesite cenu jedne noci sobe:</label>
-                <input type="number" class="number_input" name="cena" min="1000" max="100000" #cena><br><br>
-                <input type="submit" class="btn btn-dark" value="Submit" (click)="addInfo(brojSobe, sprat, brMesta, cena)">
+                <input type="number" class="number_input" name="cena" min="1000" max="100000" formControlName="cena"><br>
+                <input type="checkbox" name="dodatnaUsluga1" formControlName="dodatnaUsluga1" #dodatnaUsluga1 value="2500">
+                <label for="dodatnaUsluga1">Klima uredjaj</label><br>
+                <input type="checkbox" name="dodatnaUsluga2" formControlName="dodatnaUsluga2" #dodatnaUsluga2 value="50000">
+                <label for="dodatnaUsluga2">Mini bar</label><br>
+                <input type="checkbox" name="dodatnaUsluga3" formControlName="dodatnaUsluga3" #dodatnaUsluga3 value="75000">
+                <label for="dodatnaUsluga3">Sauna</label><br>
+                <input type="submit" class="btn btn-dark" value="Submit" (click)="addSoba(angForm.controls['brojSobe'].value, angForm.controls['sprat'].value, angForm.controls['brMesta'].value, angForm.controls['cena'].value, dodatnaUsluga1, dodatnaUsluga2, dodatnaUsluga3)">
             </form>
+        </div>
+
+        <div class="messages">
+            <div *ngIf="angForm.controls['brojSobe'].invalid && (angForm.controls['brojSobe'].dirty || angForm.controls['brojSobe'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="$any(angForm.controls['brojSobe']).errors.required">
+                    Broj sobe je obavezno!!!
+                </div>
+            </div>
+
+            <div *ngIf="angForm.controls['sprat'].invalid && (angForm.controls['sprat'].dirty || angForm.controls['sprat'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="$any(angForm.controls['sprat']).errors.required">
+                    Broj sprata je obavezno!!!
+                </div>
+            </div>
+
+            <div *ngIf="angForm.controls['brMesta'].invalid && (angForm.controls['brMesta'].dirty || angForm.controls['brMesta'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="$any(angForm.controls['brMesta']).errors.required">
+                    Broj mesta je obavezan!!!
+                </div>
+            </div>
+
+            <div *ngIf="angForm.controls['cena'].invalid && (angForm.controls['cena'].dirty || angForm.controls['cena'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="$any(angForm.controls['cena']).errors.required">
+                    Cena sobe je obavezna!!!
+                </div>
+            </div>
+
+            <div *ngIf="(angForm.controls['brojSobe'].dirty || angForm.controls['brojSobe'].touched || angForm.controls['sprat'].dirty || angForm.controls['sprat'].touched || angForm.controls['brMesta'].dirty || angForm.controls['brMesta'].touched || angForm.controls['cena'].dirty || angForm.controls['cena'].touched)"
+                class="alert alert-danger">
+                <div
+                    *ngIf="!sobaValidation(angForm.controls['brojSobe'].value, angForm.controls['sprat'].value, angForm.controls['brMesta'].value, angForm.controls['cena'].value)">
+                    Unesite pravilno sve podatke!
+                </div>
+            </div>
+
+            <div *ngIf="(angForm.controls['dodatnaUsluga1'].dirty || angForm.controls['dodatnaUsluga1'].touched || angForm.controls['dodatnaUsluga2'].dirty || angForm.controls['dodatnaUsluga2'].touched || angForm.controls['dodatnaUsluga3'].dirty || angForm.controls['dodatnaUsluga3'].touched)"
+                class="alert alert-info">
+                <div>
+                    Vas racun je uvecan za {{zbirUsluge(dodatnaUsluga1, dodatnaUsluga2, dodatnaUsluga3)}} dinara!
+                </div>
+            </div>
+
         </div>
 
         <table class="table table-dark">
@@ -31,6 +84,7 @@
                     <th scope="col">Br. Sobe</th>
                     <th scope="col">Sprat</th>
                     <th scope="col">Br. Mesta</th>
+                    <th scope="col">Dodatne usluge</th>
                     <th scope="col">Cena</th>
                 </tr>
             </thead>
@@ -39,6 +93,7 @@
                     <td> {{ soba.brojSobe }} </td>
                     <td> {{ soba.sprat }} </td>
                     <td> {{ soba.brMesta }} </td>
+                    <td> {{ soba.dodatneUsluge }} </td>
                     <td> {{ soba.cena }} </td>
                 </tr>
             </tbody>

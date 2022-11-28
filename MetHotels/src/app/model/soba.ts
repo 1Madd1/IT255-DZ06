@@ -3,4 +3,5 @@ export class Soba {
     sprat : number;
     brMesta: number;
     cena: number;
+    dodatneUsluge: string[];
 }
