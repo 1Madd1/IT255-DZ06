@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RoomService } from '../model/roomservice';
 import { Soba } from '../model/soba';
 
 @Component({
@@ -12,9 +13,8 @@ export class SobaComponent implements OnInit {
   sobe: Soba[] = [];
   soba: Soba;
   dodatneUsluge: string[] = [];
-
   angForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private roomService: RoomService) {
     this.createForm();
   }
 
@@ -51,7 +51,7 @@ export class SobaComponent implements OnInit {
     var pomBrMesta: number = parseInt(brMesta);
     var pomCena: number = parseInt(cena);
     var pomBrNoci: number = parseInt(brNoci);
-    var pomUkupnaCena: number = pomCena * pomBrNoci;
+    var pomUkupnaCena: number = this.roomService.getTotalPrice(pomBrNoci, pomCena);
     if (this.sobe != undefined) {
       for (let i = 0; i < this.sobe.length; i++) {
         if (this.sobe[i].sprat == pomSprat && this.sobe[i].brojSobe == pomBrSobe) {

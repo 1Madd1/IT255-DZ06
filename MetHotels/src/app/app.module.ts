@@ -9,6 +9,7 @@ import { PonudacomponentComponent } from './ponudacomponent/ponudacomponent.comp
 import { PreporukacomponentComponent } from './preporukacomponent/preporukacomponent.component';
 import { ONamaComponentComponent } from './o-nama-component/o-nama-component.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RoomService } from './model/roomservice';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
