@@ -67,6 +67,7 @@ export class SobaComponent implements OnInit {
       this.soba.sprat = parseInt(sprat);
       this.soba.brMesta = parseInt(brMesta);
       this.soba.cena = pomCena;
+      this.soba.brNoci = pomBrNoci;
       if (dodatnaUsluga1.checked) {
         pomUkupnaCena += parseInt(dodatnaUsluga1.value);
         this.dodatneUsluge.push("Klima uredjaj");

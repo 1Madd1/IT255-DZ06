@@ -4,5 +4,6 @@ export class Soba {
     brMesta: number;
     cena: number;
     ukupnaCena: number;
+    brNoci: number;
     dodatneUsluge: string[];
 }
