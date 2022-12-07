@@ -22,6 +22,8 @@
                 <input type="number" class="number_input" name="brMesta" min="1" max="5" formControlName="brMesta"><br>
                 <label for="cena">Unesite cenu jedne noci sobe:</label>
                 <input type="number" class="number_input" name="cena" min="1000" max="100000" formControlName="cena"><br>
+                <label for="brNoci">Unesite broj noci:</label>
+                <input type="number" class="number_input" name="brNoci" min="1" max="20" formControlName="brNoci"><br>
                 <label >Izaberite dodatne usluge (Opciono):</label><br>
                 <input type="checkbox" name="dodatnaUsluga1" formControlName="dodatnaUsluga1" #dodatnaUsluga1 value="2500">
                 <label for="dodatnaUsluga1">Klima uredjaj</label><br>
@@ -29,7 +31,7 @@
                 <label for="dodatnaUsluga2">Mini bar</label><br>
                 <input type="checkbox" name="dodatnaUsluga3" formControlName="dodatnaUsluga3" #dodatnaUsluga3 value="75000">
                 <label for="dodatnaUsluga3">Sauna</label><br>
-                <input type="submit" class="btn btn-dark" value="Submit" (click)="addSoba(angForm.controls['brojSobe'].value, angForm.controls['sprat'].value, angForm.controls['brMesta'].value, angForm.controls['cena'].value, dodatnaUsluga1, dodatnaUsluga2, dodatnaUsluga3)">
+                <input type="submit" class="btn btn-dark" value="Submit" (click)="addSoba(angForm.controls['brojSobe'].value, angForm.controls['sprat'].value, angForm.controls['brMesta'].value, angForm.controls['cena'].value, angForm.controls['brNoci'].value, dodatnaUsluga1, dodatnaUsluga2, dodatnaUsluga3)">
             </form>
         </div>
 
@@ -62,10 +64,17 @@
                 </div>
             </div>
 
-            <div *ngIf="(angForm.controls['brojSobe'].dirty || angForm.controls['brojSobe'].touched || angForm.controls['sprat'].dirty || angForm.controls['sprat'].touched || angForm.controls['brMesta'].dirty || angForm.controls['brMesta'].touched || angForm.controls['cena'].dirty || angForm.controls['cena'].touched)"
+            <div *ngIf="angForm.controls['brNoci'].invalid && (angForm.controls['brNoci'].dirty || angForm.controls['brNoci'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="$any(angForm.controls['brNoci']).errors.required">
+                    Broj noci je obavezan!!!
+                </div>
+            </div>
+
+            <div *ngIf="(angForm.controls['brojSobe'].dirty || angForm.controls['brojSobe'].touched || angForm.controls['sprat'].dirty || angForm.controls['sprat'].touched || angForm.controls['brMesta'].dirty || angForm.controls['brMesta'].touched || angForm.controls['cena'].dirty || angForm.controls['cena'].touched || angForm.controls['brNoci'].dirty || angForm.controls['brNoci'].touched)"
                 class="alert alert-danger">
                 <div
-                    *ngIf="!sobaValidation(angForm.controls['brojSobe'].value, angForm.controls['sprat'].value, angForm.controls['brMesta'].value, angForm.controls['cena'].value)">
+                    *ngIf="!sobaValidation(angForm.controls['brojSobe'].value, angForm.controls['sprat'].value, angForm.controls['brMesta'].value, angForm.controls['cena'].value, angForm.controls['brNoci'].value)">
                     Unesite pravilno sve podatke!
                 </div>
             </div>
@@ -86,7 +95,8 @@
                     <th scope="col">Sprat</th>
                     <th scope="col">Br. Mesta</th>
                     <th scope="col">Dodatne usluge</th>
-                    <th scope="col">Cena</th>
+                    <th scope="col">Cena po jednu noc</th>
+                    <th scope="col">Ukupna cena</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,6 +106,7 @@
                     <td> {{ soba.brMesta }} </td>
                     <td> {{ soba.dodatneUsluge }} </td>
                     <td> {{ soba.cena }} </td>
+                    <td> {{ soba.ukupnaCena }} </td>
                 </tr>
             </tbody>
         </table>

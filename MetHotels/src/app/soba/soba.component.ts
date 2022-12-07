@@ -24,62 +24,62 @@ export class SobaComponent implements OnInit {
       sprat: ['', Validators.required],
       brMesta: ['', Validators.required],
       cena: ['', Validators.required],
+      brNoci: ['', Validators.required],
       dodatnaUsluga1: ['', Validators.required],
       dodatnaUsluga2: ['', Validators.required],
       dodatnaUsluga3: ['', Validators.required]
     });
   }
 
-  sobaValidation(brojSobe: string, sprat: string, brMesta: string, cena: string): boolean {
+  sobaValidation(brojSobe: string, sprat: string, brMesta: string, cena: string, brNoci: string): boolean {
     var pomBrSobe: number = parseInt(brojSobe);
     var pomSprat: number = parseInt(sprat);
     var pomBrMesta: number = parseInt(brMesta);
     var pomCena: number = parseInt(cena);
-    if (Number.isNaN(pomBrSobe) || Number.isNaN(pomSprat) || Number.isNaN(pomBrMesta) || Number.isNaN(pomCena)) {
+    var pomBrNoci: number = parseInt(brNoci);
+    if (Number.isNaN(pomBrSobe) || Number.isNaN(pomSprat) || Number.isNaN(pomBrMesta) || Number.isNaN(pomCena) || Number.isNaN(pomBrNoci)) {
       return false;
     }
     return true;
   }
 
-  addSoba(brojSobe: string, sprat: string, brMesta: string, cena: string, dodatnaUsluga1: HTMLInputElement, dodatnaUsluga2: HTMLInputElement, dodatnaUsluga3: HTMLInputElement): boolean {
+  addSoba(brojSobe: string, sprat: string, brMesta: string, cena: string, brNoci: string, dodatnaUsluga1: HTMLInputElement, dodatnaUsluga2: HTMLInputElement, dodatnaUsluga3: HTMLInputElement): boolean {
     this.soba = new Soba();
     this.dodatneUsluge.splice(0);
     var pomBrSobe: number = parseInt(brojSobe);
     var pomSprat: number = parseInt(sprat);
     var pomBrMesta: number = parseInt(brMesta);
     var pomCena: number = parseInt(cena);
+    var pomBrNoci: number = parseInt(brNoci);
+    var pomUkupnaCena: number = pomCena * pomBrNoci;
     if (this.sobe != undefined) {
       for (let i = 0; i < this.sobe.length; i++) {
-        console.log("Duzina niza: " + this.sobe.length);
-        console.log("Trenutni index : " + i);
-        console.log("Postojeci sprat: " + this.sobe[i].sprat + "; Postojeca soba: " + this.sobe[i].brojSobe);
-        console.log("Unesen sprat: " + pomBrSobe + "; Unesena soba: " + pomBrSobe);
-        console.log("-----------------------");
         if (this.sobe[i].sprat == pomSprat && this.sobe[i].brojSobe == pomBrSobe) {
           alert("Broj sobe i broj sprata ne sme biti isti sa postojecom sobom!");
           return false;
         }
       }
     }
-    if (Number.isNaN(pomBrSobe) || Number.isNaN(pomSprat) || Number.isNaN(pomBrMesta) || Number.isNaN(pomCena)) {
+    if (Number.isNaN(pomBrSobe) || Number.isNaN(pomSprat) || Number.isNaN(pomBrMesta) || Number.isNaN(pomCena) || Number.isNaN(pomBrNoci)) {
       alert("Unesite pravilno sve podatke!");
     } else {
       this.soba.brojSobe = parseInt(brojSobe);
       this.soba.sprat = parseInt(sprat);
       this.soba.brMesta = parseInt(brMesta);
+      this.soba.cena = pomCena;
       if (dodatnaUsluga1.checked) {
-        pomCena += parseInt(dodatnaUsluga1.value);
+        pomUkupnaCena += parseInt(dodatnaUsluga1.value);
         this.dodatneUsluge.push("Klima uredjaj");
       }
       if (dodatnaUsluga2.checked) {
-        pomCena += parseInt(dodatnaUsluga2.value);
+        pomUkupnaCena += parseInt(dodatnaUsluga2.value);
         this.dodatneUsluge.push("Mini bar");
       }
       if (dodatnaUsluga3.checked) {
-        pomCena += parseInt(dodatnaUsluga3.value);
+        pomUkupnaCena += parseInt(dodatnaUsluga3.value);
         this.dodatneUsluge.push("Sauna");
       }
-      this.soba.cena = pomCena;
+      this.soba.ukupnaCena = pomUkupnaCena;
       this.soba.dodatneUsluge = this.dodatneUsluge;
       this.sobe.push(this.soba);
       this.sobe.sort((v1,v2) => {
