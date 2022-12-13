@@ -1,0 +1,21 @@
+.http {
+    border: 3px solid black;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+}
+
+.http button{
+    margin: 10px;
+}
+
+.http_result{
+    text-align: justify;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+}

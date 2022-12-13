@@ -1,0 +1,9 @@
+<div class="http">
+    <h2>Osnovni zahtevi</h2>
+    <button type="button" class="btn btn-primary" (click)="makeRequest()">READ sobe</button>
+    <button type="button" class="btn btn-primary" (click)="makePost()">CREAT sobu</button>
+    <button type="button" class="btn btn-primary" (click)="makePut()">UPDATE sobu</button>
+    <button type="button" class="btn btn-primary" (click)="makeDelete()">DELETE sobu</button>
+    <div *ngIf="loading">loading...</div>
+    <pre class="http_result">{{data | json}}</pre>
+</div>

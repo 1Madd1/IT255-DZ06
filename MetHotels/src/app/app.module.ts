@@ -10,6 +10,8 @@ import { PreporukacomponentComponent } from './preporukacomponent/preporukacompo
 import { ONamaComponentComponent } from './o-nama-component/o-nama-component.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomService } from './model/roomservice';
+import { HttpClientModule } from '@angular/common/http';
+import { SimpleHttpComponent } from './simple-http/simple-http.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { RoomService } from './model/roomservice';
     NavbarcomponentComponent,
     PonudacomponentComponent,
     PreporukacomponentComponent,
-    ONamaComponentComponent
+    ONamaComponentComponent,
+    SimpleHttpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [RoomService],
   bootstrap: [AppComponent]

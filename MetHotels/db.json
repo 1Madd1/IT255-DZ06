@@ -1,0 +1,44 @@
+{
+  "sobe": [
+    {
+      "id": 2,
+      "brojSobe": 4,
+      "sprat": 1,
+      "brMesta": 2,
+      "brNoci": 4,
+      "cena": 1500,
+      "dodatneUsluge": "",
+      "ukupnaCena": 6000
+    },
+    {
+      "id": 3,
+      "brojSobe": 1,
+      "sprat": 2,
+      "brMesta": 1,
+      "brNoci": 5,
+      "cena": 1000,
+      "dodatneUsluge": "",
+      "ukupnaCena": 5000
+    },
+    {
+      "id": 4,
+      "brojSobe": 2,
+      "sprat": 2,
+      "brMesta": 1,
+      "brNoci": 5,
+      "cena": 1000,
+      "dodatneUsluge": "",
+      "ukupnaCena": 5000
+    },
+    {
+      "id": 5,
+      "brojSobe": 4,
+      "sprat": 4,
+      "brMesta": 3,
+      "brNoci": 3,
+      "cena": 1000,
+      "dodatneUsluge": "",
+      "ukupnaCena": 3000
+    }
+  ]
+}
