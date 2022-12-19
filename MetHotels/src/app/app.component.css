@@ -1,0 +1,11 @@
+.router_links {
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.router_links button{
+    margin: 10px;
+}

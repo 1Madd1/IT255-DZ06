@@ -11,7 +11,14 @@ import { ONamaComponentComponent } from './o-nama-component/o-nama-component.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomService } from './model/roomservice';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 import { SimpleHttpComponent } from './simple-http/simple-http.component';
+
+const routes: Routes = [
+  // osnovne rute
+  { path: '', redirectTo: 'soba', pathMatch: 'full' },
+  { path: 'soba', component: SobaComponent },
+  { path: 'simpleHttp', component: SimpleHttpComponent }]
 
 @NgModule({
   declarations: [
@@ -28,7 +35,8 @@ import { SimpleHttpComponent } from './simple-http/simple-http.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [RoomService],
   bootstrap: [AppComponent]

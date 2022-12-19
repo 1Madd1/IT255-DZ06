@@ -34,13 +34,14 @@
     margin: 0; /* važno vertikalno poravnanje za mobilne telefone */
   }
 
-  .ponuda_component {
+  .ponuda_component, .preporuka_component {
     padding: 15px 5px 15px 5px;
   }
   
   /* plava pozadina obleženog linka */
-  .navbar a:hover, .dropdown:hover, .dropbtn, .ponuda_component:hover{
+  .navbar a:hover, .dropdown:hover, .dropbtn, .ponuda_component:hover, .preporuka_component:hover {
     background-color: blue;
+    cursor: pointer;
   }
 
   

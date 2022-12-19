@@ -14,13 +14,11 @@ export class NavbarcomponentComponent implements OnInit {
 
   onInfo() {
     var info_div = document.getElementById("info");
-    console.log(info_div?.style.display);
     if (info_div?.style.display == "" || info_div?.style.display == "none") {
       info_div.style.display = "block";
     } else {
       info_div!.style.display = "none";
     }
-    console.log(info_div?.style.display);
   }
 
   ngOnInit(): void {
