@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RoomService } from '../model/roomservice';
 import { Soba } from '../model/soba';
+import { SobaService } from '../services/soba.service';
 
 @Component({
   selector: 'app-soba',
@@ -11,11 +12,33 @@ import { Soba } from '../model/soba';
 export class SobaComponent implements OnInit {
 
   sobe: Soba[] = [];
+  sobe2: Soba[] = [];
   soba: Soba;
   dodatneUsluge: string[] = [];
   angForm: FormGroup;
-  constructor(private fb: FormBuilder, private roomService: RoomService) {
+  constructor(private fb: FormBuilder, private roomService: RoomService, private sobaService: SobaService) {
     this.createForm();
+  }
+
+  ngOnInit(): void {
+    this.sobaService.getSobe().subscribe((sobe2) => (this.sobe2 = sobe2));
+  }
+
+  addSoba2(soba: Soba) {
+    this.sobaService.addSoba(soba).subscribe((soba) => this.sobe2.push(soba));
+  }
+
+  toggleOccupied(soba: Soba) {
+    soba.zauzeto = !soba.zauzeto;
+    this.sobaService.updateSoba(soba).subscribe();
+  }
+
+  deleteSoba(soba: Soba) {
+    this.sobaService
+      .deleteSoba(soba)
+      .subscribe(
+        () => (this.sobe2 = this.sobe2.filter((r) => r.id !== soba.id))
+      );
   }
 
   createForm() {
@@ -112,9 +135,6 @@ export class SobaComponent implements OnInit {
     }
 
     return ukupanZbir;
-  }
-
-  ngOnInit(): void {
   }
 
 }

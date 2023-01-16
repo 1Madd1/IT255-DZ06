@@ -13,6 +13,8 @@ import { RoomService } from './model/roomservice';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { SimpleHttpComponent } from './simple-http/simple-http.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { SobaService } from './services/soba.service';
 
 const routes: Routes = [
   // osnovne rute
@@ -28,7 +30,8 @@ const routes: Routes = [
     PonudacomponentComponent,
     PreporukacomponentComponent,
     ONamaComponentComponent,
-    SimpleHttpComponent
+    SimpleHttpComponent,
+    RxjsComponent
   ],
   imports: [
     BrowserModule,
